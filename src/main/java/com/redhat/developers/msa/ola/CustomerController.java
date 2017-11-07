@@ -17,15 +17,16 @@
 package com.redhat.developers.msa.ola;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.redhat.developers.pojo.Person;
 import com.redhat.devopers.model.CustomerData;
+import com.redhat.devopers.model.CustomerDocumentDetail;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -41,27 +42,20 @@ public class CustomerController {
 			this.customerService = customerService;
 	}
 
-    @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET, value = "/holaclientes", produces = "text/plain")
-    @ApiOperation("Hola clientes")
-    public String holaclientes() {        
-        return "Hola Customer !!!";
-    }
-    	
 	
 	// Búsqueda por codigo de cliente
 	@RequestMapping(value="/code/{id}", method=RequestMethod.GET)
 	@ApiOperation(value = "Código de Cliente",response = CustomerData.class, produces = "application/json")
-	public Iterable<CustomerData> getCustomerByCode(@PathVariable final String id)
+	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByCode(@PathVariable final String id)
 	{
 		return customerService.getCustomerByCode(id);
 	}
 	
-	@RequestMapping(value="/document/{curp}", method=RequestMethod.GET)
+	@RequestMapping(value="/document/{document}", method=RequestMethod.GET)
 	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, ETC)",response = CustomerData.class, produces = "application/json")
-	public Iterable<CustomerData> getCustomerByDocument(@PathVariable final String curp)
+	public Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document)
 	{
-		return customerService.getCustomerByDocument(curp);
+		return customerService.getCustomerByDocument(document);
 	}
 	
 	
@@ -80,8 +74,8 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/accountnum/{account}", method=RequestMethod.GET)
-	@ApiOperation(value = "Número de Cuenta", response = String.class, produces = "application/json")
-	public /*CustomerData*/ String getCustomerByCode(@PathVariable final long account)
+	@ApiOperation(value = "Número de Cuenta", response = CustomerData.class, produces = "application/json")
+	public Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account)
 	{
 		return customerService.getCustomerByAccountNumber(account);
 	}
