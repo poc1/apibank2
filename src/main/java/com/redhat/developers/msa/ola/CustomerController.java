@@ -17,14 +17,12 @@
 package com.redhat.developers.msa.ola;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.redhat.developers.pojo.Person;
 import com.redhat.devopers.model.CustomerData;
 import com.redhat.devopers.model.CustomerDocumentDetail;
 
@@ -32,7 +30,6 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/customer")
-//@Api(value="API Customer", description="Customer Operations")
 public class CustomerController {
 
 	public final CustomerService customerService;
@@ -49,9 +46,9 @@ public class CustomerController {
 	 * @param document_number
 	 * @return
 	 */
-	@RequestMapping(value="/document/{document_number}", method=RequestMethod.GET)
+	@RequestMapping(value="/document", method=RequestMethod.GET)
 	@ApiOperation(value = "Documentos y codigo del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)", response = CustomerDocumentDetail.class, produces = "application/json")
-	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document_number)
+	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByDocument(@RequestParam(value="document_number", required = true, defaultValue = "") String document_number)
 	{
 		return customerService.getCustomerByDocument(document_number);
 	}
@@ -62,11 +59,11 @@ public class CustomerController {
 	 * @param person
 	 * @return
 	 */
-	@RequestMapping(value="/name/", method=RequestMethod.POST)
+	@RequestMapping(value="/name", method=RequestMethod.GET)
 	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno", response = CustomerData.class, produces = "application/json")
-	public @ResponseBody Iterable<CustomerData> getCustomerByDocument(@RequestBody Person person)
+	public @ResponseBody Iterable<CustomerData> getCustomerByDocument(@RequestParam(value="name", required = false, defaultValue = "") String name, @RequestParam(value="paternal_name", required = false, defaultValue = "") String paternal_name, @RequestParam(value="maternal_name", required = false, defaultValue = "") String maternal_name)
 	{
-		return customerService.getCustomerByName(person);
+		return customerService.getCustomerByName(name, paternal_name, maternal_name);
 	}	
 	
 
@@ -76,22 +73,22 @@ public class CustomerController {
 	 * @param company_name
 	 * @return
 	 */
-	@RequestMapping(value="/company/{company_name}", method=RequestMethod.GET)
+	@RequestMapping(value="/company", method=RequestMethod.GET)
 	@ApiOperation(value = "Nombre de la Empresa", response = CustomerData.class, produces = "application/json")
-	public @ResponseBody Iterable<CustomerData> getCustomerByCompany(@PathVariable final String company_name)
+	public @ResponseBody Iterable<CustomerData> getCustomerByCompany(@RequestParam(value="company_name", required = true, defaultValue = "") String company_name)
 	{
 		return customerService.getCustomerByCompany(company_name);
 	}
 	
 
 	/**
-	 * Obtener el cliente por numero de cuenta
+	 * Búsqueda por numero de cuenta
 	 * @param account_number
 	 * @return
 	 */
-	@RequestMapping(value="/accountnum/{account_number}", method=RequestMethod.GET)
+	@RequestMapping(value="/accountnum", method=RequestMethod.GET)
 	@ApiOperation(value = "Número de Cuenta", response = CustomerData.class, produces = "application/json")
-	public @ResponseBody Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account_number)
+	public @ResponseBody Iterable<CustomerData> getCustomerByAccountNumber(@RequestParam(value="account_number", required = true, defaultValue = "") String account_number)
 	{
 		return customerService.getCustomerByAccountNumber(account_number);
 	}

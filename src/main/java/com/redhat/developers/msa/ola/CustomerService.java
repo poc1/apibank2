@@ -5,7 +5,6 @@ import java.util.ListIterator;
 
 import org.springframework.stereotype.Service;
 
-import com.redhat.developers.pojo.Person;
 import com.redhat.devopers.model.CustomerData;
 import com.redhat.devopers.model.CustomerDocumentDetail;
 
@@ -65,17 +64,21 @@ public class CustomerService {
 	
 	
 	// CONSULTA DE CustomerData por el nombre, apellido paterno y/o materno
-	public Iterable<CustomerData> getCustomerByName(Person person)
+	public Iterable<CustomerData> getCustomerByName(String name, String paternal_name, String maternal_name)
 		{
 			ArrayList<CustomerData> it = new ArrayList<CustomerData>();
 			ListIterator<CustomerData> iterator =  customerDataList.listIterator();
 			while(iterator.hasNext()) {
 				
 				CustomerData data = iterator.next();
+				name = name.toUpperCase();
+				paternal_name = paternal_name.toUpperCase();
+				maternal_name = maternal_name.toUpperCase();
 				
-				if( (data.getFullName().contains(person.getName()) && !person.getName().equals("") ) || 
-					(data.getFullName().contains(person.getPaternal_name()) && !person.getPaternal_name().equals("") ) || 
-					(data.getFullName().contains(person.getMaternal_name()) && !person.getMaternal_name().equals(""))
+				if( ((data.getFullName().contains(name) && !name.equals("") ) || name.equals("")) && 
+					((data.getFullName().contains(paternal_name) && !paternal_name.equals("") ) || paternal_name.equals("")) && 
+					((data.getFullName().contains(maternal_name) && !maternal_name.equals("") ) || maternal_name.equals("")) &&
+					!(name.equals("") && paternal_name.equals("") && maternal_name.equals(""))
 				   )
 					it.add(data);
 			}		
@@ -92,14 +95,18 @@ public class CustomerService {
 			while(iterator.hasNext()) {
 				
 				CustomerData data = iterator.next();
-				if(data.getFullName().contains(company) && !company.equals(""))
+				if(data.getFullName().contains(company.toUpperCase()) && !company.equals(""))
 					it.add(data);
 			}
 			return it;
 	}
 		
 	
-	// Obtener el cliente por numero de cuenta
+	/**
+	 * Obtener el cliente por numero de cuenta
+	 * @param accountNumber
+	 * @return
+	 */
 	public Iterable<CustomerData> getCustomerByAccountNumber(String accountNumber)
 	{
 		ArrayList<CustomerData> it = new ArrayList<CustomerData>();
