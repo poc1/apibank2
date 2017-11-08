@@ -50,7 +50,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value="/document/{document_number}", method=RequestMethod.GET)
-	@ApiOperation(value = "Documentos y codigo del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)", produces = "application/json")
+	@ApiOperation(value = "Documentos y codigo del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)", response = CustomerDocumentDetail.class, produces = "application/json")
 	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document_number)
 	{
 		return customerService.getCustomerByDocument(document_number);
@@ -63,7 +63,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value="/name/", method=RequestMethod.POST)
-	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno", produces = "application/json")
+	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno", response = CustomerData.class, produces = "application/json")
 	public @ResponseBody Iterable<CustomerData> getCustomerByDocument(@RequestBody Person person)
 	{
 		return customerService.getCustomerByName(person);
@@ -77,7 +77,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value="/company/{company_name}", method=RequestMethod.GET)
-	@ApiOperation(value = "Nombre de la Empresa", produces = "application/json")
+	@ApiOperation(value = "Nombre de la Empresa", response = CustomerData.class, produces = "application/json")
 	public @ResponseBody Iterable<CustomerData> getCustomerByCompany(@PathVariable final String company_name)
 	{
 		return customerService.getCustomerByCompany(company_name);
@@ -90,7 +90,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value="/accountnum/{account_number}", method=RequestMethod.GET)
-	@ApiOperation(value = "Número de Cuenta", produces = "application/json")
+	@ApiOperation(value = "Número de Cuenta", response = CustomerData.class, produces = "application/json")
 	public @ResponseBody Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account_number)
 	{
 		return customerService.getCustomerByAccountNumber(account_number);
