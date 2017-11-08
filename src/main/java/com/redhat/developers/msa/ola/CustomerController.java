@@ -51,14 +51,15 @@ public class CustomerController {
 		return customerService.getCustomerByCode(id);
 	}
 	
+	// Busqueda por Documento
 	@RequestMapping(value="/document/{document}", method=RequestMethod.GET)
-	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, ETC)",response = CustomerData.class, produces = "application/json")
+	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, ETC)",response = CustomerDocumentDetail.class, produces = "application/json")
 	public Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document)
 	{
 		return customerService.getCustomerByDocument(document);
 	}
 	
-	
+	// Busqueda por nombre, apellido paterno, materno, etc
 	@RequestMapping(value="/name/", method=RequestMethod.POST)
 	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno",response = CustomerData.class, produces = "application/json")
 	public Iterable<CustomerData> getCustomerByDocument(@RequestBody Person person)
@@ -66,6 +67,8 @@ public class CustomerController {
 		return customerService.getCustomerByName(person);
 	}	
 	
+	// PENDIENTE DEFINIR REQUEST Y RESPONSE POR PARTE DEL CLIENTE
+	// Busqueda por nombre de la empresa
 	@RequestMapping(value="/company/{company}", method=RequestMethod.GET)
 	@ApiOperation(value = "Nombre de la Empresa",response = CustomerData.class, produces = "application/json")
 	public Iterable<CustomerData> getCustomerByCompany(@PathVariable final String company)
@@ -73,6 +76,8 @@ public class CustomerController {
 		return customerService.getCustomerByCompany(company);
 	}
 	
+	// PENDIENTE DEFINIR REQUEST Y RESPONSE POR PARTE DEL CLIENTE
+	// Busqueda por numero de cuenta
 	@RequestMapping(value="/accountnum/{account}", method=RequestMethod.GET)
 	@ApiOperation(value = "Número de Cuenta", response = CustomerData.class, produces = "application/json")
 	public Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account)
