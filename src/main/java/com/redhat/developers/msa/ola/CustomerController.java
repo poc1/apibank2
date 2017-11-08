@@ -31,7 +31,7 @@ import com.redhat.devopers.model.CustomerDocumentDetail;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/customer")
 //@Api(value="API Customer", description="Customer Operations")
 public class CustomerController {
 
