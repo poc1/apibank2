@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.redhat.developers.pojo.Person;
@@ -42,47 +43,57 @@ public class CustomerController {
 	}
 
 	
-	
-//	@RequestMapping(value="/code/{document_number}", method=RequestMethod.GET)
-//	@ApiOperation(value = "Código de Cliente",response = CustomerData.class, produces = "application/json")
-//	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByCode(@PathVariable final String id)
-//	{
-//		return customerService.getCustomerByCode(id);
-//	}
-	
-	// Búsqueda por codigo de cliente
-	// Busqueda por Documento
+
+	/**
+	 * Búsqueda por codigo de cliente y por Documento
+	 * @param document_number
+	 * @return
+	 */
 	@RequestMapping(value="/document/{document_number}", method=RequestMethod.GET)
-	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)",response = CustomerDocumentDetail.class, produces = "application/json")
-	public Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document_number)
+	@ApiOperation(value = "Documentos y codigo del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)", produces = "application/json")
+	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document_number)
 	{
 		return customerService.getCustomerByDocument(document_number);
 	}
 	
-	// Busqueda por nombre, apellido paterno, materno, etc
+	 
+	/**
+	 * Busqueda por nombre, apellido paterno, materno, etc 
+	 * @param person
+	 * @return
+	 */
 	@RequestMapping(value="/name/", method=RequestMethod.POST)
-	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno",response = CustomerData.class, produces = "application/json")
-	public Iterable<CustomerData> getCustomerByDocument(@RequestBody Person person)
+	@ApiOperation(value = "Nombre y Apellido Paterno o Nombre, Apellido Paterno y Materno o Apellido Paterno y Apellido Materno", produces = "application/json")
+	public @ResponseBody Iterable<CustomerData> getCustomerByDocument(@RequestBody Person person)
 	{
 		return customerService.getCustomerByName(person);
 	}	
 	
-	// PENDIENTE DEFINIR REQUEST Y RESPONSE POR PARTE DEL CLIENTE
-	// Busqueda por nombre de la empresa
-	@RequestMapping(value="/company/{company}", method=RequestMethod.GET)
-	@ApiOperation(value = "Nombre de la Empresa",response = CustomerData.class, produces = "application/json")
-	public Iterable<CustomerData> getCustomerByCompany(@PathVariable final String company)
+
+
+	/**
+	 * Busqueda por nombre de la empresa
+	 * @param company_name
+	 * @return
+	 */
+	@RequestMapping(value="/company/{company_name}", method=RequestMethod.GET)
+	@ApiOperation(value = "Nombre de la Empresa", produces = "application/json")
+	public @ResponseBody Iterable<CustomerData> getCustomerByCompany(@PathVariable final String company_name)
 	{
-		return customerService.getCustomerByCompany(company);
+		return customerService.getCustomerByCompany(company_name);
 	}
 	
-	// PENDIENTE DEFINIR REQUEST Y RESPONSE POR PARTE DEL CLIENTE
-	// Busqueda por numero de cuenta
-	@RequestMapping(value="/accountnum/{account}", method=RequestMethod.GET)
-	@ApiOperation(value = "Número de Cuenta", response = CustomerData.class, produces = "application/json")
-	public Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account)
+
+	/**
+	 * Obtener el cliente por numero de cuenta
+	 * @param account_number
+	 * @return
+	 */
+	@RequestMapping(value="/accountnum/{account_number}", method=RequestMethod.GET)
+	@ApiOperation(value = "Número de Cuenta", produces = "application/json")
+	public @ResponseBody Iterable<CustomerData> getCustomerByAccountNumber(@PathVariable final String account_number)
 	{
-		return customerService.getCustomerByAccountNumber(account);
+		return customerService.getCustomerByAccountNumber(account_number);
 	}
 
 }

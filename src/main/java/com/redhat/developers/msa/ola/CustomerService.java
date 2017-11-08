@@ -39,23 +39,14 @@ public class CustomerService {
 		customerDataList.add(new CustomerData("44444", "ENLACE ALQUIMIA", "ACEVES MIRANDA MANUEL", "REQUETECLIENTE", "RMARA2", "", "FISICA"));
 		customerDataList.add(new CustomerData("55555", "DESENLAZADO", "QUINTANA RUIZ MARIA", "CLIENTE", "QUINTA", "", "FISICA"));
 		customerDataList.add(new CustomerData("66666", "PRIMATE", "LUNA DUARTE JAIME", "CLIENTE", "LUNILLA", "", "FISICA"));
+		customerDataList.add(new CustomerData("20019279", "", "COCA & HACTH PROPERTIES SA DE CV", "CLIENTE", "", "", "JURIDICA"));
+		customerDataList.add(new CustomerData("27662675", "", "COCA COLA FEMSA DE VENEZUELA SA", "PRECLIENTE", "", "", "JURIDICA"));
+		customerDataList.add(new CustomerData("28907552", "", "COCA COLA FEMSA O SUBSIDIARIAS SA DE CV", "PRECLIENTE", "", "", "JURIDICA"));
+		customerDataList.add(new CustomerData("16249790", "", "COCA COLA FEMSA SA DE CV", "PROSPECT", "", "", "JURIDICA"));
+		customerDataList.add(new CustomerData("79271378", "BANCO SANTANDER MEXICANO", "RASGADO POSADAS RUBEN", "CLIENTE", "PREMIER NUEVO", "BERNARDO QUINTANA", "FISICA"));
 		
 	}
 	
-//	// PARA LA BUSQUEDA POR por CLIENTE, REGRESA UNA LISTA DE CustomerDocumentRetail ( igual que la busqueda de documentos )
-	// ESTE METODO SE HOMOLOGA CON EL DE DOCUMENTOS YA QUE EN  EL API DEL CLENTE ES EL MISMO METODO PARA ESTE TAMBIEN
-//	public Iterable<CustomerDocumentDetail> getCustomerByCode(String code)
-//	{
-//		ArrayList<CustomerDocumentDetail> it = new ArrayList<CustomerDocumentDetail>();
-//		ListIterator<CustomerDocumentDetail> iterator =  customerList.listIterator();
-//		while(iterator.hasNext()) {
-//				
-//			CustomerDocumentDetail data = iterator.next();
-//			if(data.getDocumentNumber().equals(code))
-//				it.add(data);
-//		}
-//		return it;		
-//	}
 		
     // PARA LA BUSQUEDA POR DOCUMENTOS DEL CLIENTE, REGRESA UNA LISTA DE CustomerDocumentRetail
 	// donde DOCUMENTO puede ser la curp, pasaporte, rfc, etc
@@ -92,7 +83,8 @@ public class CustomerService {
 	}
 		
 	
-	// de momento queda devolviendo el CustomerData hasta que se defina con el cliente si devuelve algo distinto
+
+	// obtener clientes por compañia
 	public Iterable<CustomerData> getCustomerByCompany(String company)
 	{
 			ArrayList<CustomerData> it = new ArrayList<CustomerData>();
@@ -100,24 +92,20 @@ public class CustomerService {
 			while(iterator.hasNext()) {
 				
 				CustomerData data = iterator.next();
-				if(data.getFullName().contains(company))
+				if(data.getFullName().contains(company) && !company.equals(""))
 					it.add(data);
-			}		
+			}
 			return it;
 	}
 		
 	
-	// de momento queda devolviendo el CustomerData hasta que se defina con el cliente si devuelve algo distinto
+	// Obtener el cliente por numero de cuenta
 	public Iterable<CustomerData> getCustomerByAccountNumber(String accountNumber)
 	{
 		ArrayList<CustomerData> it = new ArrayList<CustomerData>();
-		ListIterator<CustomerData> iterator =  customerDataList.listIterator();
-		while(iterator.hasNext()) {
-			
-			CustomerData data = iterator.next();
-			if(data.getCustomerId().equals(accountNumber))
-				it.add(data);
-		}		
+		int numero = (int) (Math.random() * 10);
+		it.add(customerDataList.get(numero));
+				
 		return it;
 	}
 	
