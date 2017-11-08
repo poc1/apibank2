@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.redhat.developers.pojo.Person;
@@ -43,20 +42,21 @@ public class CustomerController {
 	}
 
 	
-	// Búsqueda por codigo de cliente
-	@RequestMapping(value="/code/{id}", method=RequestMethod.GET)
-	@ApiOperation(value = "Código de Cliente",response = CustomerData.class, produces = "application/json")
-	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByCode(@PathVariable final String id)
-	{
-		return customerService.getCustomerByCode(id);
-	}
 	
+//	@RequestMapping(value="/code/{document_number}", method=RequestMethod.GET)
+//	@ApiOperation(value = "Código de Cliente",response = CustomerData.class, produces = "application/json")
+//	public @ResponseBody Iterable<CustomerDocumentDetail> getCustomerByCode(@PathVariable final String id)
+//	{
+//		return customerService.getCustomerByCode(id);
+//	}
+	
+	// Búsqueda por codigo de cliente
 	// Busqueda por Documento
-	@RequestMapping(value="/document/{document}", method=RequestMethod.GET)
-	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, ETC)",response = CustomerDocumentDetail.class, produces = "application/json")
-	public Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document)
+	@RequestMapping(value="/document/{document_number}", method=RequestMethod.GET)
+	@ApiOperation(value = "Documento del Cliente (RFC, CURP, PASAPORTE, CODIGO DE CLIENTE)",response = CustomerDocumentDetail.class, produces = "application/json")
+	public Iterable<CustomerDocumentDetail> getCustomerByDocument(@PathVariable final String document_number)
 	{
-		return customerService.getCustomerByDocument(document);
+		return customerService.getCustomerByDocument(document_number);
 	}
 	
 	// Busqueda por nombre, apellido paterno, materno, etc

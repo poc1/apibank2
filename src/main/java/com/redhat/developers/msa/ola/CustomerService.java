@@ -42,19 +42,20 @@ public class CustomerService {
 		
 	}
 	
-	// PARA LA BUSQUEDA POR por CLIENTE, REGRESA UNA LISTA DE CustomerDocumentRetail ( igual que la busqueda de documentos )
-	public Iterable<CustomerDocumentDetail> getCustomerByCode(String code)
-	{
-		ArrayList<CustomerDocumentDetail> it = new ArrayList<CustomerDocumentDetail>();
-		ListIterator<CustomerDocumentDetail> iterator =  customerList.listIterator();
-		while(iterator.hasNext()) {
-				
-			CustomerDocumentDetail data = iterator.next();
-			if(data.getDocumentNumber().equals(code))
-				it.add(data);
-		}
-		return it;		
-	}
+//	// PARA LA BUSQUEDA POR por CLIENTE, REGRESA UNA LISTA DE CustomerDocumentRetail ( igual que la busqueda de documentos )
+	// ESTE METODO SE HOMOLOGA CON EL DE DOCUMENTOS YA QUE EN  EL API DEL CLENTE ES EL MISMO METODO PARA ESTE TAMBIEN
+//	public Iterable<CustomerDocumentDetail> getCustomerByCode(String code)
+//	{
+//		ArrayList<CustomerDocumentDetail> it = new ArrayList<CustomerDocumentDetail>();
+//		ListIterator<CustomerDocumentDetail> iterator =  customerList.listIterator();
+//		while(iterator.hasNext()) {
+//				
+//			CustomerDocumentDetail data = iterator.next();
+//			if(data.getDocumentNumber().equals(code))
+//				it.add(data);
+//		}
+//		return it;		
+//	}
 		
     // PARA LA BUSQUEDA POR DOCUMENTOS DEL CLIENTE, REGRESA UNA LISTA DE CustomerDocumentRetail
 	// donde DOCUMENTO puede ser la curp, pasaporte, rfc, etc
@@ -82,8 +83,8 @@ public class CustomerService {
 				CustomerData data = iterator.next();
 				
 				if( (data.getFullName().contains(person.getName()) && !person.getName().equals("") ) || 
-					(data.getFullName().contains(person.getSecondLastName()) && !person.getSecondLastName().equals("") ) || 
-					(data.getFullName().contains(person.getLastName()) && !person.getLastName().equals(""))
+					(data.getFullName().contains(person.getPaternal_name()) && !person.getPaternal_name().equals("") ) || 
+					(data.getFullName().contains(person.getMaternal_name()) && !person.getMaternal_name().equals(""))
 				   )
 					it.add(data);
 			}		

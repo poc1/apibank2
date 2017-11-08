@@ -3,8 +3,8 @@ package com.redhat.developers.pojo;
 public class Person {
 	
 	private String name;	
-	private String lastName;
-	private String secondLastName;
+	private String paternal_name;
+	private String maternal_name;
 	
 	
 	public String getName() {
@@ -12,21 +12,22 @@ public class Person {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}	
-	public String getLastName() {
-		return lastName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public String getPaternal_name() {
+		return paternal_name;
 	}
-	public String getSecondLastName() {
-		return secondLastName;
+	public void setPaternal_name(String paternal_name) {
+		this.paternal_name = paternal_name;
 	}
-	public void setSecondLastName(String secondLastName) {
-		this.secondLastName = secondLastName;
+	public String getMaternal_name() {
+		return maternal_name;
+	}
+	public void setMaternal_name(String maternal_name) {
+		this.maternal_name = maternal_name;
 	}
 	
 	
+		
 	
 
 }
