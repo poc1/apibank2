@@ -23,10 +23,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class OlaApplication {
+public class CustomerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OlaApplication.class, args);
+        SpringApplication.run(CustomerApplication.class, args);
     }
 
 }
