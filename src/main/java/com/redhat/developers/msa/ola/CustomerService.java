@@ -20,14 +20,14 @@ public class CustomerService {
 		
 		// para la speticiones por codigo de cliente, docoumentos(curp, pasaporte, rfc, etc)
 		customerList = new ArrayList<CustomerDocumentDetail>();
-		customerList.add(new CustomerDocumentDetail("Codigo de Cliente", "01", "22222", "20170107", "20170111", ""));
-		customerList.add(new CustomerDocumentDetail("Codigo de Cliente", "01", "11111", "20170107", "20170509", ""));
-		customerList.add(new CustomerDocumentDetail("RFC", "01", "MIRFC1", "20170107", "20170509", ""));
-		customerList.add(new CustomerDocumentDetail("RFC", "01", "MIRFC2", "20170305", "20170608", ""));
-		customerList.add(new CustomerDocumentDetail("CURP", "01", "MICURP1", "20170107", "20170509", ""));
-		customerList.add(new CustomerDocumentDetail("CURP", "01", "MICURP2", "20170305", "20170608", ""));
-		customerList.add(new CustomerDocumentDetail("PASAPORTE", "01", "MIPASAPORTE1", "20170107", "20170509", ""));
-		customerList.add(new CustomerDocumentDetail("PASAPORTE", "01", "MIPASAPORTE2", "20170305", "20170608", ""));
+		customerList.add(new CustomerDocumentDetail("CODIGO DE CLIENTE", "01", "11111", "20170107", "20170111", ""));
+		customerList.add(new CustomerDocumentDetail("CODIGO DE CLIENTE", "01", "22222", "20170107", "20170509", ""));
+		customerList.add(new CustomerDocumentDetail("RFC", "01", "MOVP830412111", "20170107", "20170509", ""));
+		customerList.add(new CustomerDocumentDetail("RFC", "01", "MOVP830412222", "20170305", "20170608", ""));
+		customerList.add(new CustomerDocumentDetail("CURP", "01", "MOVP830412HSLNLL01", "20170107", "20170509", ""));
+		customerList.add(new CustomerDocumentDetail("CURP", "01", "MOVP830412HSLNLL02", "20170305", "20170608", ""));
+		customerList.add(new CustomerDocumentDetail("PASAPORTE", "01", "12345", "20170107", "20170509", ""));
+		customerList.add(new CustomerDocumentDetail("PASAPORTE", "01", "54321", "20170305", "20170608", ""));
 		
 		
 		// para las peticiones de nombres y apellidos
