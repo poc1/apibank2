@@ -94,8 +94,11 @@ public class CustomerService {
 			ListIterator<CustomerData> iterator =  customerDataList.listIterator();
 			while(iterator.hasNext()) {
 				
+				if(company == null || company.equals(""))
+					continue;
+				
 				CustomerData data = iterator.next();
-				if(data.getFullName().contains(company.toUpperCase()) && !company.equals(""))
+				if(data.getFullName().contains(company.trim().toUpperCase()))
 					it.add(data);
 			}
 			return it;
