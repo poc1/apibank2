@@ -18,7 +18,7 @@ public class CustomerService {
 
 	public CustomerService() {
 		
-		// para la speticiones por codigo de cliente, docoumentos(curp, pasaporte, rfc, etc)
+		// para las peticiones por codigo de cliente, docoumentos(curp, pasaporte, rfc, etc)
 		customerList = new ArrayList<CustomerDocumentDetail>();
 		customerList.add(new CustomerDocumentDetail("CODIGO DE CLIENTE", "01", "11111", "20170107", "20170111", ""));
 		customerList.add(new CustomerDocumentDetail("CODIGO DE CLIENTE", "01", "22222", "20170107", "20170509", ""));
@@ -32,7 +32,7 @@ public class CustomerService {
 		
 		// para las peticiones de nombres y apellidos
 		customerDataList = new ArrayList<CustomerData>();
-		customerDataList.add(new CustomerData("11111", "", "ACEVES BARBOZA ADOLFO", "CLIENTE", "", "", "FISICA"));
+		customerDataList.add(new CustomerData("11111", "", "ACEVES GOZALEZ ADOLFO", "CLIENTE", "", "", "FISICA"));
 		customerDataList.add(new CustomerData("22222", "GARRA TELEMARKETING", "MENDOZA BARBOZA ADOLFO", "CLIENTE", "RME RB", "", "FISICA"));
 		customerDataList.add(new CustomerData("33333", "", "MILLAN CAMBEROS ANA", "PRECLIENTE", "", "", "FISICA"));
 		customerDataList.add(new CustomerData("44444", "ENLACE ALQUIMIA", "ACEVES MIRANDA MANUEL", "REQUETECLIENTE", "RMARA2", "", "FISICA"));
