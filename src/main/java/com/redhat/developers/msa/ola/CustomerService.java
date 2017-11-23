@@ -91,16 +91,19 @@ public class CustomerService {
 	public Iterable<CustomerData> getCustomerByCompany(String company)
 	{
 			ArrayList<CustomerData> it = new ArrayList<CustomerData>();
-			ListIterator<CustomerData> iterator =  customerDataList.listIterator();
-			while(iterator.hasNext()) {
-				
-				if(company == null || company.equals(""))
-					continue;
-				
-				CustomerData data = iterator.next();
-				if(data.getFullName().contains(company.trim().toUpperCase()))
-					it.add(data);
-			}
+//			ListIterator<CustomerData> iterator =  customerDataList.listIterator();
+//			while(iterator.hasNext()) {
+//				
+//				if(company == null || company.equals(""))
+//					continue;
+//				
+//				CustomerData data = iterator.next();
+//				if(data.getFullName().contains(company.trim().toUpperCase()))
+//					it.add(data);
+//			}
+			CustomerData data = customerDataList.get(0);
+			data.setOriginChannel(company);
+			it.add(data);
 			return it;
 	}
 		
