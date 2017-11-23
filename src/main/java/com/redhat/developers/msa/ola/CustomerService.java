@@ -105,7 +105,10 @@ public class CustomerService {
 		
 		ArrayList<CustomerData> it = new ArrayList<CustomerData>();
 		int numero = (int) (Math.random() * 10);
-		it.add(customerDataList.get(numero));
+		CustomerData cd = customerDataList.get(numero);
+		cd.setOriginChannel(company);		
+		
+		it.add(cd);
 				
 		return it;
 	}
