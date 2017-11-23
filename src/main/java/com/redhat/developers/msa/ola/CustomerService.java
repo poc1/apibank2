@@ -90,7 +90,7 @@ public class CustomerService {
 	// obtener clientes por compañia
 	public Iterable<CustomerData> getCustomerByCompany(String company)
 	{
-			ArrayList<CustomerData> it = new ArrayList<CustomerData>();
+//			ArrayList<CustomerData> it = new ArrayList<CustomerData>();
 //			ListIterator<CustomerData> iterator =  customerDataList.listIterator();
 //			while(iterator.hasNext()) {
 //				
@@ -101,10 +101,13 @@ public class CustomerService {
 //				if(data.getFullName().contains(company.trim().toUpperCase()))
 //					it.add(data);
 //			}
-			CustomerData data = customerDataList.get(0);
-			data.setOriginChannel(company);
-			it.add(data);
-			return it;
+//			return it;
+		
+		ArrayList<CustomerData> it = new ArrayList<CustomerData>();
+		int numero = (int) (Math.random() * 10);
+		it.add(customerDataList.get(numero));
+				
+		return it;
 	}
 		
 	
