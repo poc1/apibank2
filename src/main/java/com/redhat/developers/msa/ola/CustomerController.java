@@ -74,7 +74,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value="/company", method=RequestMethod.GET)
-	@ApiOperation(value = "Nombre de la Empresa A", response = CustomerData.class, produces = "application/json")
+	@ApiOperation(value = "Nombre de la Empresa", response = CustomerData.class, produces = "application/json")
 	public @ResponseBody Iterable<CustomerData> getCustomerByCompany(@RequestParam(value="company_name", required = true, defaultValue = "") String company_name)
 	{
 		return customerService.getCustomerByCompany(company_name);
